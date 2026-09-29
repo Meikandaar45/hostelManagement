@@ -29,9 +29,27 @@ const app = express();
 
 // ─── Security ───────────────────────────────────────────────────────────────
 app.use(helmet());
+
+const rawOrigins = (env.CORS_ORIGIN || env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: env.CLIENT_URL,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (curl, mobile, server-to-server)
+      if (!origin) return callback(null, true);
+      // Direct match or wildcard
+      if (rawOrigins.includes(origin) || rawOrigins.includes('*')) {
+        return callback(null, true);
+      }
+      // Support Vercel preview domains if a vercel.app domain is configured
+      if (origin.endsWith('.vercel.app') && rawOrigins.some((o) => o.includes('vercel.app'))) {
+        return callback(null, true);
+      }
+      return callback(null, false);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   })

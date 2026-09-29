@@ -10,7 +10,9 @@ export async function requireAuth(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  const token = req.cookies?.auth_token as string | undefined;
+  const authHeader = req.headers.authorization;
+  const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : undefined;
+  const token = (req.cookies?.auth_token as string | undefined) || bearerToken;
 
   if (!token) {
     res.status(401).json({ success: false, message: 'Authentication required' });

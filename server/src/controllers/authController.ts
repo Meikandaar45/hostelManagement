@@ -25,7 +25,7 @@ const COOKIE_NAME = 'auth_token';
 function setCookie(res: Response, token: string): void {
   res.cookie(COOKIE_NAME, token, {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: env.COOKIE_SAME_SITE,
     secure: env.COOKIE_SECURE,
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
     path: '/',
@@ -35,7 +35,7 @@ function setCookie(res: Response, token: string): void {
 function clearCookie(res: Response): void {
   res.clearCookie(COOKIE_NAME, {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: env.COOKIE_SAME_SITE,
     secure: env.COOKIE_SECURE,
     path: '/',
   });
@@ -43,7 +43,7 @@ function clearCookie(res: Response): void {
 
 function getIp(req: Request): string {
   return (
-    (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
+    (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim() ||
     req.socket.remoteAddress ||
     'unknown'
   );
@@ -56,7 +56,7 @@ export async function setup(req: Request, res: Response, next: NextFunction) {
     const user = await createFirstAdmin(data, getIp(req));
     const token = signJwt(user.id, user.role);
     setCookie(res, token);
-    res.status(201).json({ success: true, data: { user } });
+    res.status(201).json({ success: true, data: { user, token } });
   } catch (err) {
     next(err);
   }
@@ -79,7 +79,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
     const user = await authenticateUser(data, getIp(req), req.headers['user-agent']);
     const token = signJwt(user.id, user.role);
     setCookie(res, token);
-    res.json({ success: true, data: { user } });
+    res.json({ success: true, data: { user, token } });
   } catch (err) {
     next(err);
   }
