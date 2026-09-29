@@ -14,10 +14,12 @@ echo   [1] Open Interactive MySQL Terminal (SHOW TABLES, SELECT, etc.)
 echo   [2] View All Users and Roles
 echo   [3] View All Students and Allocations
 echo   [4] View All Leave Requests and Gate Passes
-echo   [5] Launch MySQL Workbench GUI
-echo   [6] Exit
+echo   [5] View All Fees and Payments
+echo   [6] View All Complaints and Maintenance Tickets
+echo   [7] Launch MySQL Workbench GUI
+echo   [8] Exit
 echo.
-set /p opt="Enter choice (1-6): "
+set /p opt="Enter choice (1-8): "
 
 if "%opt%"=="1" (
     cls
@@ -46,6 +48,20 @@ if "%opt%"=="4" (
     goto :EOF
 )
 if "%opt%"=="5" (
+    cls
+    echo --- FEES AND PAYMENTS ---
+    "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -proot123 hostel_management -t -e "SELECT p.id, p.receipt_number, f.fee_type, p.amount, p.payment_method, p.paid_at FROM payments p JOIN fees f ON p.fee_id = f.id;"
+    pause
+    goto :EOF
+)
+if "%opt%"=="6" (
+    cls
+    echo --- COMPLAINTS AND MAINTENANCE TICKETS ---
+    "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -proot123 hostel_management -t -e "SELECT c.id, c.ticket_id, s.full_name as student, c.category, c.priority, c.status, LEFT(c.description, 40) as description FROM complaints c JOIN students s ON c.student_id = s.id;"
+    pause
+    goto :EOF
+)
+if "%opt%"=="7" (
     echo Starting MySQL Workbench...
     start "" "C:\Program Files\MySQL\MySQL Workbench 8.0\MySQLWorkbench.exe"
 )
