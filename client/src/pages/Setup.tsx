@@ -93,14 +93,14 @@ export function Setup() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="Username"
-            placeholder="admin"
+            placeholder="arun.kumar"
             {...register('username')}
             error={errors.username?.message}
           />
           <Input
             label="Email"
             type="email"
-            placeholder="admin@example.com"
+            placeholder="arun.kumar@example.com"
             {...register('email')}
             error={errors.email?.message}
           />

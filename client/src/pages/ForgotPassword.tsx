@@ -50,7 +50,7 @@ export function ForgotPassword() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <Input
           label="Username or Email"
-          placeholder="admin@example.com"
+          placeholder="arun.kumar@example.com or arun.kumar"
           {...register('identifier')}
           error={errors.identifier?.message}
         />

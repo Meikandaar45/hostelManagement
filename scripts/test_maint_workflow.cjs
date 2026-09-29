@@ -1,11 +1,11 @@
 const http = require('http');
 
 async function run() {
-  // 1. Login as maint_p3
+  // 1. Login as priya.s
   const loginRes = await fetch('http://localhost:5000/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ identifier: 'maint_p3', password: 'password123' })
+    body: JSON.stringify({ identifier: 'priya.s', password: 'password123' })
   });
   const cookie = loginRes.headers.get('set-cookie');
   console.log('MAINT LOGIN:', loginRes.status === 200 ? 'SUCCESS' : 'FAILED');

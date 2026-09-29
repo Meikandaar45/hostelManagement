@@ -112,7 +112,7 @@ test('maintenance shell is scoped to assigned task navigation', async ({ page })
 
   await page.goto('/app/dashboard');
 
-  await expect(page.getByText('MAINTENANCE User')).toBeVisible();
+  await expect(page.getByText('MAINTENANCE User', { exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'My Tasks' })).toBeVisible();
   await expect(page.getByText('Visitors')).toHaveCount(0);
   await expect(page.getByText('Reports')).toHaveCount(0);

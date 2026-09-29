@@ -12,7 +12,7 @@ async function setupApiMocks(page: Page, role: 'ADMIN' | 'WARDEN' | 'STUDENT') {
             id: role === 'STUDENT' ? 104 : role === 'WARDEN' ? 102 : 101,
             username: `${role.toLowerCase()}_user`,
             email: `${role.toLowerCase()}@test.com`,
-            full_name: role === 'STUDENT' ? 'Alex Student' : role === 'WARDEN' ? 'Warden Robert' : 'Admin User',
+            full_name: role === 'STUDENT' ? 'Vignesh R' : role === 'WARDEN' ? 'Karthik Raj' : 'Arun Kumar',
             role,
             is_active: 1,
           },
@@ -43,7 +43,7 @@ async function setupApiMocks(page: Page, role: 'ADMIN' | 'WARDEN' | 'STUDENT') {
             total_students: 120,
           },
           recent: { leaves: [] },
-          profile: { full_name: role === 'STUDENT' ? 'Alex Student' : 'Warden Robert' },
+          profile: { full_name: role === 'STUDENT' ? 'Vignesh R' : 'Karthik Raj' },
         },
       }),
     });
@@ -68,7 +68,7 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
               {
                 id: 501,
                 student_id: 101,
-                student_name: 'Alex Student',
+                student_name: 'Vignesh R',
                 student_number: 'STU-2026-001',
                 room_number: '301-A',
                 from_datetime: '2026-10-05T09:00:00Z',
@@ -141,14 +141,14 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
               gate_pass_number: gatePassNumber,
               leave_id: 501,
               hostel_name: 'Campus Hostel Management System',
-              student_name: 'Alex Student',
+              student_name: 'Vignesh R',
               student_id: 'STU-2026-001',
               room_number: '301-A',
               from_datetime: '2026-10-05T09:00:00Z',
               to_datetime: '2026-10-08T18:00:00Z',
               reason: 'Attending family wedding ceremony in hometown',
               status: 'APPROVED',
-              approved_by: 'Warden Robert',
+              approved_by: 'Karthik Raj',
               approved_at: '2026-09-28T21:30:00Z',
             },
           },
@@ -189,13 +189,13 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
     await page.goto('/app/leave/requests');
 
     await expect(page.getByRole('heading', { name: 'Leave Approvals' })).toBeVisible();
-    await expect(page.getByText('Alex Student')).toBeVisible();
+    await expect(page.getByText('Vignesh R')).toBeVisible();
     await expect(page.getByText('Attending family wedding ceremony in hometown')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Approve' })).toBeVisible();
 
     // Click Approve button to open modal
     await page.getByRole('button', { name: 'Approve' }).click();
-    await expect(page.getByText('Approve Leave: Alex Student')).toBeVisible();
+    await expect(page.getByText('Approve Leave: Vignesh R')).toBeVisible();
 
     // Add Warden Approval Note and Submit
     await page.getByPlaceholder(/Must report back to warden office/i).fill('Approved. Report back by Oct 8.');
@@ -224,10 +224,10 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
     await expect(page.getByRole('heading', { name: 'DIGITAL GATE PASS' })).toBeVisible();
     await expect(page.getByText('Hostel Administration & Security')).toBeVisible();
     await expect(page.getByText('GP-2026-L89012')).toBeVisible();
-    await expect(page.getByRole('main').getByText('Alex Student')).toBeVisible();
+    await expect(page.getByRole('main').getByText('Vignesh R')).toBeVisible();
     await expect(page.getByText('STU-2026-001')).toBeVisible();
     await expect(page.getByText('Room 301-A')).toBeVisible();
-    await expect(page.getByText('Warden Robert')).toBeVisible();
+    await expect(page.getByText('Karthik Raj')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Print Gate Pass' })).toBeVisible();
 
     // Verify student notification
@@ -252,7 +252,7 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
               {
                 id: 502,
                 student_id: 101,
-                student_name: 'Alex Student',
+                student_name: 'Vignesh R',
                 student_number: 'STU-2026-001',
                 room_number: '301-A',
                 from_datetime: '2026-10-10T09:00:00Z',
@@ -350,12 +350,12 @@ test.describe('Leave Approval & Rejection Complete Lifecycle', () => {
     await setupApiMocks(page, 'WARDEN');
     await page.goto('/app/leave/requests');
 
-    await expect(page.getByText('Alex Student')).toBeVisible();
+    await expect(page.getByText('Vignesh R')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Reject' })).toBeVisible();
 
     // Click Reject
     await page.getByRole('button', { name: 'Reject' }).click();
-    await expect(page.getByText('Reject Leave: Alex Student')).toBeVisible();
+    await expect(page.getByText('Reject Leave: Vignesh R')).toBeVisible();
 
     // Submit with reason
     await page.getByPlaceholder(/Explain why this request was declined/i).fill('Examination preparation period underway');

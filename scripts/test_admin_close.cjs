@@ -2,7 +2,7 @@ async function run() {
   const loginRes = await fetch('http://localhost:5000/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ identifier: 'admin_p3', password: 'password123' })
+    body: JSON.stringify({ identifier: 'arun.kumar', password: 'password123' })
   });
   const cookie = loginRes.headers.get('set-cookie');
   console.log('ADMIN LOGIN:', loginRes.status === 200 ? 'SUCCESS' : 'FAILED');

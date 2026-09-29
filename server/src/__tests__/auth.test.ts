@@ -33,7 +33,7 @@ describe('POST /api/auth/setup', () => {
   beforeEach(() => mockExecute.mockReset());
 
   const validPayload = {
-    full_name: 'Admin User',
+    full_name: 'Arun Kumar',
     username: 'admin',
     email: 'admin@hostel.com',
     password: 'Secret123',
@@ -47,7 +47,7 @@ describe('POST /api/auth/setup', () => {
       .mockResolvedValueOnce([{ insertId: 1 }, []])         // INSERT user
       .mockResolvedValueOnce([[{                            // findUserById
         id: 1, username: 'admin', email: 'admin@hostel.com',
-        full_name: 'Admin User', role: 'ADMIN', is_active: 1,
+        full_name: 'Arun Kumar', role: 'ADMIN', is_active: 1,
         created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
         last_login_at: null,
       }], []]);

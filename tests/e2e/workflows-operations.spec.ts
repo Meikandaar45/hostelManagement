@@ -154,8 +154,8 @@ test.describe('Admin Complete Operational Workflow', () => {
           success: true,
           data: {
             items: [
-              { id: 1, username: 'admin_user', email: 'admin@hostel.com', full_name: 'Admin User', role: 'ADMIN', status: 'ACTIVE', created_at: '2026-01-01' },
-              { id: 2, username: 'warden_one', email: 'warden@hostel.com', full_name: 'Warden One', role: 'WARDEN', status: 'ACTIVE', created_at: '2026-01-02' },
+              { id: 1, username: 'arun.kumar', email: 'arun.kumar@example.com', full_name: 'Arun Kumar', role: 'ADMIN', status: 'ACTIVE', created_at: '2026-01-01' },
+              { id: 2, username: 'karthik.raj', email: 'karthik.raj@example.com', full_name: 'Karthik Raj', role: 'WARDEN', status: 'ACTIVE', created_at: '2026-01-02' },
             ],
             total: 2,
             page: 1,
@@ -168,8 +168,8 @@ test.describe('Admin Complete Operational Workflow', () => {
     await page.getByRole('link', { name: 'User Management' }).click();
     await expect(page).toHaveURL(/\/app\/users$/);
     await expect(page.getByRole('heading', { name: 'User Management' })).toBeVisible();
-    await expect(page.getByRole('table').getByText('@admin_user')).toBeVisible();
-    await expect(page.getByText('warden_one')).toBeVisible();
+    await expect(page.getByRole('table').getByText('@arun.kumar')).toBeVisible();
+    await expect(page.getByRole('table').getByText('@karthik.raj')).toBeVisible();
 
     // 3. Room Management
     await page.route('**/api/rooms/stats', async (route) => {
@@ -266,7 +266,7 @@ test.describe('Admin Complete Operational Workflow', () => {
           success: true,
           data: {
             items: [
-              { id: 1, action: 'USER_LOGIN', user_id: 1, username: 'admin_user', ip_address: '127.0.0.1', created_at: '2026-09-28T12:00:00Z' },
+              { id: 1, action: 'USER_LOGIN', user_id: 1, username: 'arun.kumar', ip_address: '127.0.0.1', created_at: '2026-09-28T12:00:00Z' },
             ],
             total: 1,
             page: 1,

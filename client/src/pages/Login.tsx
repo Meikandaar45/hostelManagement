@@ -58,7 +58,7 @@ export function Login() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           label="Username or Email"
-          placeholder="admin@example.com"
+          placeholder="arun.kumar@example.com or arun.kumar"
           {...register('identifier')}
           error={errors.identifier?.message}
         />

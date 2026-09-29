@@ -170,7 +170,7 @@ test.describe('Error-Path & Resilience Testing', () => {
         body: JSON.stringify({
           success: true,
           data: {
-            user: { id: 1, username: 'admin_user', full_name: 'Admin User', role: 'ADMIN', is_active: 1 },
+            user: { id: 1, username: 'arun.kumar', full_name: 'Arun Kumar', role: 'ADMIN', is_active: 1 },
           },
         }),
       });
@@ -191,7 +191,7 @@ test.describe('Error-Path & Resilience Testing', () => {
     await page.goto('/app/dashboard');
 
     // Page still renders layout and dashboard fallback safely without unhandled JavaScript exceptions
-    await expect(page.getByText('Admin User', { exact: true })).toBeVisible();
+    await expect(page.getByText('Arun Kumar', { exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Sign out of account' })).toBeVisible();
   });
 });

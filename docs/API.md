@@ -161,7 +161,7 @@
           "id": 1,
           "userId": 104,
           "studentId": "STU-2026-001",
-          "fullName": "Alex Mercer",
+          "fullName": "Vignesh R",
           "gender": "MALE",
           "contactNumber": "+1234567890",
           "department": "Computer Science",
@@ -290,7 +290,7 @@
       {
         "id": 1,
         "studentId": 1,
-        "studentName": "Alex Mercer",
+        "studentName": "Vignesh R",
         "feeType": "Hostel Semester Fee",
         "academicPeriod": "Fall 2026",
         "amount": "1500.00",
@@ -544,7 +544,7 @@ All reporting endpoints enforce `requireRole('ADMIN', 'WARDEN')` and return stru
         {
           "id": 108,
           "actorUserId": 102,
-          "actorName": "Warden Robert",
+          "actorName": "Karthik Raj",
           "action": "LEAVE_APPROVED",
           "entityType": "leave_request",
           "entityId": 14,

@@ -11,22 +11,22 @@ async function verify() {
     // 1. Create a warden user
     const [userRes]: any = await pool.query(
       `INSERT INTO users (username, email, password, full_name, role) VALUES (?, ?, ?, ?, 'WARDEN')`,
-      ['warden_' + unique, 'warden_' + unique + '@test.com', passwordHash, 'Warden Test']
+      ['warden_' + unique, 'karthik.raj_' + unique + '@example.com', passwordHash, 'Karthik Raj']
     );
     const wardenId = userRes.insertId;
 
     // 2. Create a student user
     const [studentUserRes]: any = await pool.query(
       `INSERT INTO users (username, email, password, full_name, role) VALUES (?, ?, ?, ?, 'STUDENT')`,
-      ['student_' + unique, 'student_' + unique + '@test.com', passwordHash, 'Student Test']
+      ['student_' + unique, 'vignesh.r_' + unique + '@example.com', passwordHash, 'Vignesh R']
     );
     const studentUserId = studentUserRes.insertId;
 
     // 3. Create student profile via service (or just insert manually since studentService expects full request)
     const [studentRes]: any = await pool.query(
       `INSERT INTO students (user_id, student_id, full_name, gender, contact_number, address, department, admission_date) 
-       VALUES (?, ?, ?, 'MALE', '1234567890', 'Test Addr', 'CS', '2023-01-01')`,
-      [studentUserId, 'STU_' + unique, 'Test Student']
+       VALUES (?, ?, ?, 'MALE', '9123456780', '12 Anna Salai, Chennai, Tamil Nadu', 'CSE', '2024-08-10')`,
+      [studentUserId, 'STU_' + unique, 'Vignesh R']
     );
     const studentDbId = studentRes.insertId;
 

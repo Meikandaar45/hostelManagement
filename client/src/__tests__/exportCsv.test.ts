@@ -36,8 +36,8 @@ describe('exportToCsv utility', () => {
       { header: 'Notes', accessor: (r: any) => r.notes },
     ];
     const data = [
-      { name: 'Smith, John', notes: 'Says "Hello"\nNew line' },
-      { name: 'Doe, Jane', notes: 'Regular' },
+      { name: 'Kumar, Arun', notes: 'Says "Hello"\nNew line' },
+      { name: 'Raj, Karthik', notes: 'Regular' },
     ];
 
     exportToCsv('test_export', columns, data);

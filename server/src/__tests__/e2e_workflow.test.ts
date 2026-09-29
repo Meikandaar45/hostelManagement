@@ -25,7 +25,7 @@ describe('Phase 4 - Complete 22-Step End-to-End Workflow Verification', () => {
     studentAccount = {
       id: 101,
       student_id: 'STU-2026-001',
-      full_name: 'David Miller',
+      full_name: 'Vignesh R',
       user_id: 201,
     };
     auditLogs.push({ action: 'STUDENT_CREATED', entity: 'student', actor_user_id: adminSession.id });
@@ -173,7 +173,7 @@ describe('Phase 4 - Complete 22-Step End-to-End Workflow Verification', () => {
   it('Step 19: Security logs visitor entry', () => {
     visitorRecord = {
       id: 501,
-      visitor_name: 'Robert Miller (Parent)',
+      visitor_name: 'Ramanathan S (Parent)',
       entry_at: new Date().toISOString(),
       exit_at: null,
     };

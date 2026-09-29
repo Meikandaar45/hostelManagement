@@ -61,7 +61,7 @@ async function run() {
   await saveScreenshot('02-login.png');
 
   // C. Admin Login & Dashboard
-  await login('admin_p3');
+  await login('arun.kumar');
   await page.goto('http://localhost:5173/app/dashboard');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(600);
@@ -121,7 +121,7 @@ async function run() {
 
   // D. Warden Login & Dashboard
   await logout();
-  await login('warden_p3');
+  await login('karthik.raj');
   await page.goto('http://localhost:5173/app/dashboard');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(600);
@@ -135,7 +135,7 @@ async function run() {
 
   // E. Student Login & Dashboard
   await logout();
-  await login('student_p3');
+  await login('vignesh.r');
   await page.goto('http://localhost:5173/app/dashboard');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(600);
@@ -171,7 +171,7 @@ async function run() {
 
   // F. Maintenance Dashboard
   await logout();
-  await login('maint_p3');
+  await login('priya.s');
   await page.goto('http://localhost:5173/app/dashboard');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(600);
