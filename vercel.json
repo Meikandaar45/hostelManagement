@@ -21,16 +21,28 @@
       }
     },
     {
-      "source": "/((?!assets/|vite\\.svg|favicon\\.ico|.*\\.[a-zA-Z0-9]+$).*)",
+      "source": "/assets/(.*)",
       "destination": {
-        "service": "client",
-        "path": "/index.html"
+        "service": "client"
+      }
+    },
+    {
+      "source": "/vite.svg",
+      "destination": {
+        "service": "client"
+      }
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": {
+        "service": "client"
       }
     },
     {
       "source": "/(.*)",
       "destination": {
-        "service": "client"
+        "service": "client",
+        "path": "/index.html"
       }
     }
   ]
