@@ -4,12 +4,14 @@ import { env } from '../config/env.js';
 function parseDbUrl(url: string) {
   // mysql://user:pass@host:port/db
   const u = new URL(url);
+  const isLocal = u.hostname === 'localhost' || u.hostname === '127.0.0.1';
   return {
     host: u.hostname,
     port: parseInt(u.port || '3306', 10),
-    user: u.username,
-    password: u.password,
+    user: decodeURIComponent(u.username),
+    password: decodeURIComponent(u.password),
     database: u.pathname.replace(/^\//, ''),
+    ssl: isLocal ? undefined : { rejectUnauthorized: false },
   };
 }
 
