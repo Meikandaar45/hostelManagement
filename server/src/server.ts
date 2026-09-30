@@ -86,11 +86,13 @@ app.use((_req, res) => {
 app.use(errorHandler);
 
 // ─── Start ──────────────────────────────────────────────────────────────────
-app.listen(env.PORT, () => {
-  logger.info(`Server running on port ${env.PORT}`, {
-    env: env.NODE_ENV,
-    port: env.PORT,
+if (!process.env.VERCEL) {
+  app.listen(env.PORT, () => {
+    logger.info(`Server running on port ${env.PORT}`, {
+      env: env.NODE_ENV,
+      port: env.PORT,
+    });
   });
-});
+}
 
 export default app;

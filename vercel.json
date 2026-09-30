@@ -4,11 +4,13 @@
     "client": {
       "root": "client",
       "framework": "vite",
-      "installCommand": "npm install --legacy-peer-deps"
+      "installCommand": "npm install --legacy-peer-deps",
+      "buildCommand": "npm run build"
     },
     "server": {
       "root": "server",
-      "framework": "express"
+      "framework": "express",
+      "buildCommand": "npm run build"
     }
   },
   "rewrites": [
@@ -16,6 +18,13 @@
       "source": "/api/(.*)",
       "destination": {
         "service": "server"
+      }
+    },
+    {
+      "source": "/((?!assets/|vite\\.svg|favicon\\.ico|.*\\.[a-zA-Z0-9]+$).*)",
+      "destination": {
+        "service": "client",
+        "path": "/index.html"
       }
     },
     {

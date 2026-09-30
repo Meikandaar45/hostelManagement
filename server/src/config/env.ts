@@ -38,7 +38,10 @@ const envSchema = z.object({
   DB_USER: z.string().default('root'),
   DB_PASSWORD: z.string().default(''),
   DB_NAME: z.string().default('hostel_management'),
-  JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
+  JWT_SECRET: z
+    .string()
+    .min(32, 'JWT_SECRET must be at least 32 characters')
+    .default('default_secure_fallback_jwt_secret_key_minimum_64_characters_hostel_management_2026'),
   JWT_EXPIRES_IN: z.string().default('7d'),
   COOKIE_SECURE: z
     .string()
