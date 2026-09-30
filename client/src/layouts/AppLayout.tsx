@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { LoadingState } from '@/components/LoadingState';
 import { getNavForRole } from '@/config/navigation';
 import { RoleBadge } from '@/components/Badge';
+import { HostelLogo } from '@/components/HostelLogo';
 import { notificationService } from '@/services/notificationService';
 
 export function AppLayout() {
@@ -70,12 +71,7 @@ export function AppLayout() {
         }`}
       >
         <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800 shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 shadow-md shadow-indigo-500/25 flex items-center justify-center text-lg select-none shrink-0 border border-indigo-400/30">
-              🏢
-            </div>
-            <span className="font-bold tracking-tight text-white text-base">Hostel Management</span>
-          </div>
+          <HostelLogo size="md" showText={true} />
           <button
             type="button"
             onClick={closeSidebar}
